@@ -13820,18 +13820,6 @@ function buildAnnotations(dist, fromKm, toKm) {
       borderWidth: 1.5,
     };
   }
-  if (dist === 'km42') {
-    for (var i = 0; i < LANDMARKS.length; i++) {
-      var lm = LANDMARKS[i];
-      anns['lm' + i] = {
-        type: 'line',
-        xMin: lm.km, xMax: lm.km,
-        borderColor: lm.color,
-        borderWidth: 1.8,
-        borderDash: [5, 3],
-      };
-    }
-  }
   return anns;
 }
 
@@ -13874,7 +13862,7 @@ function renderChart() {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
-      layout: { padding: { left: 0, right: 4, top: 4, bottom: 0 } },
+      layout: { padding: { left: -8, right: 4, top: 4, bottom: 0 } },
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
@@ -13910,7 +13898,7 @@ function renderChart() {
           grid: { color: 'rgba(0,0,0,0.05)' },
         },
         y: {
-          title: { display: false },
+          title: { display: true, text: 'גובה (מ׳)', font: { size: 11 }, padding: { top: 0, bottom: 0 } },
           grid: { color: 'rgba(0,0,0,0.05)' },
           ticks: { maxTicksLimit: 6 },
         }
