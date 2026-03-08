@@ -13830,7 +13830,7 @@ function buildAnnotations(dist, fromKm, toKm) {
         borderWidth: 1.8,
         borderDash: [5, 3],
         label: {
-          display: true,
+          display: window.innerWidth >= 768,
           content: lm.label,
           position: 'start',
           color: lm.color,
@@ -14010,6 +14010,13 @@ function init() {
   });
   document.getElementById('range-from').addEventListener('input', updateRange);
   document.getElementById('range-to').addEventListener('input', updateRange);
+
+  // Redraw chart when crossing mobile breakpoint (landmark labels toggle)
+  var _lastMobile = window.innerWidth < 768;
+  window.addEventListener('resize', function() {
+    var isMobile = window.innerWidth < 768;
+    if (isMobile !== _lastMobile) { _lastMobile = isMobile; renderChart(); }
+  });
 
   // Console summary
   console.log('=== Jerusalem Marathon — Elevation Summary ===');
